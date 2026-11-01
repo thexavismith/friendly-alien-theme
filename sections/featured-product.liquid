@@ -63,7 +63,7 @@
               {% capture img_id %}ProductImage-{{ image.id }}{% endcapture %}
               {% capture img_wrapper_id %}ProductImageWrapper-{{ image.id }}{% endcapture %}
               {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-              {% include 'image-style' with image: image, small_style: false, width: 700, height: 1024, wrapper_id: img_wrapper_id, img_id: img_id %}
+              {% include 'image-style' with image, image: image, small_style: false, width: 700, height: 1024, wrapper_id: img_wrapper_id, img_id: img_id %}
 
               <div id="{{ img_wrapper_id }}" class="product-single__image-wrapper supports-js{% unless featured_image == image %} hide{% endunless %}{% if section.settings.product_image_zoom_type == 'lightbox' %} zoom-lightbox{% endif %}" data-image-id="{{ image.id }}">
                 <div style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;">
@@ -705,3 +705,15 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-style' with image: image, small_style: false, width: 700,
+    height: 1024, wrapper_id: img_wrapper_id, img_id: img_id %}"
+  to: "{% include 'image-style' with image, image: image, small_style: false, width:
+    700, height: 1024, wrapper_id: img_wrapper_id, img_id: img_id %}"
+  position: 2659..2801
+{% endcomment %}

@@ -28,7 +28,7 @@
     {% for block in section.blocks limit: section.blocks.size %}
       {% assign featured = block.settings.collection %}
       <div class="grid__item {{collection_item_width}} text-center" {{ block.shopify_attributes }}>
-        {% include 'collection-grid-item' with collection_width: collection_width %}
+        {% include 'collection-grid-item' with collection_width, collection_width: collection_width %}
       </div>
     {% endfor %}
   </div>
@@ -238,3 +238,15 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'collection-grid-item' with collection_width: collection_width
+    %}"
+  to: "{% include 'collection-grid-item' with collection_width, collection_width:
+    collection_width %}"
+  position: 1309..1403
+{% endcomment %}

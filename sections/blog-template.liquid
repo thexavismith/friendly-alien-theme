@@ -45,7 +45,7 @@
               {% capture wrapper_id %}ArticleImageWrapper-{{ section.id }}--{{ article.image.id }}{% endcapture %}
               {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
               {%- assign image_alt = article.title | escape -%}
-              {% include 'image-style' with image: article.image, width: 845, height: 1024, wrapper_id: wrapper_id, img_id: img_id %}
+              {% include 'image-style' with image, image: article.image, width: 845, height: 1024, wrapper_id: wrapper_id, img_id: img_id %}
               <p>
                 <div id="{{ wrapper_id }}" class="article__image-wrapper supports-js">
                   <div style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;">
@@ -153,3 +153,15 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-style' with image: article.image, width: 845, height: 1024,
+    wrapper_id: wrapper_id, img_id: img_id %}"
+  to: "{% include 'image-style' with image, image: article.image, width: 845, height:
+    1024, wrapper_id: wrapper_id, img_id: img_id %}"
+  position: 2120..2246
+{% endcomment %}

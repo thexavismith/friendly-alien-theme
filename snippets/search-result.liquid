@@ -32,7 +32,7 @@
           {%- assign item_image = item.image.src -%}
         {%- endif -%}
         {%- assign img_url = item_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-        {% include 'image-style' with image: item_image, width: 170, height: 240, wrapper_id: wrapper_id, img_id: img_id %}
+        {% include 'image-style' with image, image: item_image, width: 170, height: 240, wrapper_id: wrapper_id, img_id: img_id %}
         <div id="{{ wrapper_id }}" class="search__image-wrapper supports-js">
           <div style="padding-top:{{ 1 | divided_by: item_image.aspect_ratio | times: 100}}%;">
             <img id="{{ img_id }}"
@@ -90,3 +90,15 @@
   </div>
 
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-style' with image: item_image, width: 170, height: 240,
+    wrapper_id: wrapper_id, img_id: img_id %}"
+  to: "{% include 'image-style' with image, image: item_image, width: 170, height:
+    240, wrapper_id: wrapper_id, img_id: img_id %}"
+  position: 1273..1395
+{% endcomment %}
